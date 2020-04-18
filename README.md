@@ -3,7 +3,7 @@
 
 ## Intro.简介
 
-![Features](/wiki/Features.png)
+![Features](/wiki/images/Features.png)
 
 ---
 
