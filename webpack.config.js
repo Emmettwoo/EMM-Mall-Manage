@@ -4,11 +4,17 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-    entry: "./src/demo.jsx",
+    entry: "./src/app.jsx",
     output: {
         path: path.resolve(__dirname, "dist"),
         publicPath: "/dist/",
-        filename: "js/demo.js"
+        filename: "js/app.js"
+    },
+    resolve: {
+        alias: {
+            page: path.resolve(__dirname, "src/page"),
+            component: path.resolve(__dirname, "src/component")
+        }
     },
     module: {
         rules: [
@@ -66,8 +72,8 @@ module.exports = {
     plugins: [
         // Html处理插件
         new HtmlWebpackPlugin({
-            template: "./src/demo.html",
-            filename: "view/index.html"
+            template: "./src/index.html",
+            favicon: "./favicon.ico"
         }),
         // CSS处理插件
         new ExtractTextPlugin("css/[name].css"),
@@ -78,6 +84,9 @@ module.exports = {
         })
     ],
     devServer: {
-        port: 8088
+        port: 8088,
+        historyApiFallback: {
+            index: "/dist/view/index.html"
+        }
     }
 };
