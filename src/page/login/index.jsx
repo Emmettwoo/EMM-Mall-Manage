@@ -2,7 +2,10 @@ import React from "react";
 
 import "./index.css";
 
-import PageTitle from 'component/page-title/index.jsx'
+import PageTitle from 'component/page-title/index.jsx';
+import User from 'service/user-service.jsx';
+const _user = new User();
+
 
 class Login extends React.Component {
     constructor(props) {
@@ -22,6 +25,17 @@ class Login extends React.Component {
         });
         // console.log(inputType + ": " + inputValue);
     }
+    // 当点击提交按钮时
+    onSubmit(e) {
+        _user.login({
+            username: this.state.username,
+            password: this.state.password
+        }).then((msg, data) => {
+            ;
+        }, (err) => {
+            ;
+        });
+    }
 
     render() {
         return (
@@ -31,7 +45,7 @@ class Login extends React.Component {
                         <PageTitle title="后台登入" />
                     </div>
                     <div className="panel-body">
-                        <form>
+                        <div>
                             <div className="form-group">
                                 <input
                                     type="text"
@@ -51,12 +65,12 @@ class Login extends React.Component {
                                 />
                             </div>
                             <button
-                                type="submit"
                                 className="btn btn-lg btn-block btn-primary btn-login"
+                                onClick={e => this.onSubmit(e)}
                             >
                                 登入
                             </button>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
