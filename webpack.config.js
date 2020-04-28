@@ -86,7 +86,7 @@ module.exports = {
     devServer: {
         port: 8088,
         historyApiFallback: {
-            index: "/dist/view/index.html"
+            index: "/dist/index.html"
         }
     }
 };
