@@ -25,10 +25,20 @@ class NavSide extends React.Component {
                             </Link>
                             <ul className="nav nav-second-level collapse in">
                                 <li>
-                                    <NavLink activeClassName="active-menu" to="/product">商品管理</NavLink>
+                                    <NavLink
+                                        activeClassName="active-menu"
+                                        to="/product"
+                                    >
+                                        商品管理
+                                    </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink activeClassName="active-menu" to="/product-category">品类管理</NavLink>
+                                    <NavLink
+                                        activeClassName="active-menu"
+                                        to="/product-category"
+                                    >
+                                        品类管理
+                                    </NavLink>
                                 </li>
                             </ul>
                         </li>
@@ -41,7 +51,12 @@ class NavSide extends React.Component {
                             </Link>
                             <ul className="nav nav-second-level collapse in">
                                 <li>
-                                    <NavLink activeClassName="active-menu" to="/order">订单管理</NavLink>
+                                    <NavLink
+                                        activeClassName="active-menu"
+                                        to="/order"
+                                    >
+                                        订单管理
+                                    </NavLink>
                                 </li>
                             </ul>
                         </li>
@@ -54,7 +69,12 @@ class NavSide extends React.Component {
                             </Link>
                             <ul className="nav nav-second-level collapse in">
                                 <li>
-                                    <NavLink activeClassName="active-menu" to="/user">用户管理</NavLink>
+                                    <NavLink
+                                        activeClassName="active-menu"
+                                        to="/user"
+                                    >
+                                        用户管理
+                                    </NavLink>
                                 </li>
                             </ul>
                         </li>

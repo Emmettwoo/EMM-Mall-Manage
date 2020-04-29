@@ -2,13 +2,12 @@ import React from "react";
 
 import "./index.css";
 
-import PageTitle from 'component/page-title/index.jsx';
+import PageTitle from "component/page-title/index.jsx";
 
-import MallUtil from 'util/mall.jsx';
-import User from 'service/user-service.jsx';
+import MallUtil from "util/mall.jsx";
+import User from "service/user-service.jsx";
 const _mall = new MallUtil();
 const _user = new User();
-
 
 class Login extends React.Component {
     constructor(props) {
@@ -16,37 +15,41 @@ class Login extends React.Component {
         this.state = {
             username: "",
             password: "",
-            redirect: _mall.getUrlParam("redirect") || "/"
+            redirect: _mall.getUrlParam("redirect") || "/",
         };
-    };
+    }
 
     // 当输入框内容发生改变
     onInputChange(e) {
         let inputType = e.target.name,
             inputValue = e.target.value;
         this.setState({
-            [inputType]: inputValue
+            [inputType]: inputValue,
         });
         // console.log(inputType + ": " + inputValue);
-    };
+    }
 
     // 当点击提交按钮时
     onSubmit(e) {
         let loginInfo = {
-            username: this.state.username,
-            password: this.state.password
-        },
-        checkResult = _user.checkLoginInfo(loginInfo);
-        if(checkResult.status) {
-            _user.login(loginInfo).then((res) => {
-                this.props.history.push(this.state.redirect);
-            }, (err) => {
-                _mall.errorTips(err);
-            });
+                username: this.state.username,
+                password: this.state.password,
+            },
+            checkResult = _user.checkLoginInfo(loginInfo);
+        if (checkResult.status) {
+            _user.login(loginInfo).then(
+                (res) => {
+                    _mall.setStorage("userInfo", res.data);
+                    this.props.history.push(this.state.redirect);
+                },
+                (err) => {
+                    _mall.errorTips(err);
+                }
+            );
         } else {
             _mall.errorTips(checkResult.msg);
         }
-    };
+    }
     // 当表单被回车提交
     onInputKeyUp(e) {
         if (e.keyCode === 13) {
@@ -69,8 +72,8 @@ class Login extends React.Component {
                                     name="username"
                                     className="form-control"
                                     placeholder="用户名"
-                                    onKeyUp={e => this.onInputKeyUp(e)}
-                                    onChange={e => this.onInputChange(e)}
+                                    onKeyUp={(e) => this.onInputKeyUp(e)}
+                                    onChange={(e) => this.onInputChange(e)}
                                 />
                             </div>
                             <div className="form-group">
@@ -79,13 +82,13 @@ class Login extends React.Component {
                                     name="password"
                                     className="form-control"
                                     placeholder="密码"
-                                    onKeyUp={e => this.onInputKeyUp(e)}
-                                    onChange={e => this.onInputChange(e)}
+                                    onKeyUp={(e) => this.onInputKeyUp(e)}
+                                    onChange={(e) => this.onInputChange(e)}
                                 />
                             </div>
                             <button
                                 className="btn btn-lg btn-block btn-primary btn-login"
-                                onClick={e => this.onSubmit(e)}
+                                onClick={(e) => this.onSubmit(e)}
                             >
                                 登入
                             </button>
@@ -94,7 +97,7 @@ class Login extends React.Component {
                 </div>
             </div>
         );
-    };
-};
+    }
+}
 
 export default Login;

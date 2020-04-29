@@ -446,6 +446,7 @@ footer p {
     color: #FFFFFF;
     margin: 0px;
 }
+
 .top-navbar .nav>li>a>span {
     color: #666666;
     margin-right: 10px;
@@ -643,6 +644,7 @@ ul.nav.nav-second-level.collapse.in {
     .top-navbar {
         position: relative;
     }
+
     .top-navbar .navbar-brand {
         width: 100%;
     }

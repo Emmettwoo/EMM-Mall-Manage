@@ -1,39 +1,48 @@
-import MallUtil from 'util/mall.jsx';
+import MallUtil from "util/mall.jsx";
 const _mall = new MallUtil();
 
 class User {
+    // 用户登入接口调用
     login(userInfo) {
         return _mall.request({
             type: "post",
             url: "/manage/user/login.do",
             data: {
                 username: userInfo.username,
-                password: userInfo.password
-            }
+                password: userInfo.password,
+            },
         });
-    };
+    }
+
+    // 用户登出接口调用
+    logout() {
+        return _mall.request({
+            type: "post",
+            url: "/user/logout.do",
+        });
+    }
 
     // 检查登入接口数据合法性
     checkLoginInfo(loginInfo) {
         let username = $.trim(loginInfo.username);
         let password = $.trim(loginInfo.password);
-        if(typeof username !== "string" || username.length === 0) {
+        if (typeof username !== "string" || username.length === 0) {
             return {
                 status: false,
-                msg: "用户名不能为空"
+                msg: "用户名不能为空",
             };
-        } else if(typeof password !== "string" || password.length === 0) {
+        } else if (typeof password !== "string" || password.length === 0) {
             return {
                 status: false,
-                msg: "密码不能为空"
+                msg: "密码不能为空",
             };
         } else {
             return {
                 status: true,
-                msg: "数据合法性验证通过"
+                msg: "数据合法性验证通过",
             };
-        };
-    };
-};
+        }
+    }
+}
 
 export default User;

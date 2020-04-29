@@ -1,7 +1,7 @@
 import React from "react";
 
 class PageTitle extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
     }
 
@@ -9,7 +9,7 @@ class PageTitle extends React.Component {
         document.title = this.props.title + " @ EMM-Mall";
     }
 
-    render () {
+    render() {
         return (
             <div className="row">
                 <div className="col-md-12">
