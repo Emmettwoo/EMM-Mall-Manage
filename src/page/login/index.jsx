@@ -47,6 +47,12 @@ class Login extends React.Component {
             _mall.errorTips(checkResult.msg);
         }
     };
+    // 当表单被回车提交
+    onInputKeyUp(e) {
+        if (e.keyCode === 13) {
+            this.onSubmit(e);
+        }
+    }
 
     render() {
         return (
@@ -63,6 +69,7 @@ class Login extends React.Component {
                                     name="username"
                                     className="form-control"
                                     placeholder="用户名"
+                                    onKeyUp={e => this.onInputKeyUp(e)}
                                     onChange={e => this.onInputChange(e)}
                                 />
                             </div>
@@ -72,6 +79,7 @@ class Login extends React.Component {
                                     name="password"
                                     className="form-control"
                                     placeholder="密码"
+                                    onKeyUp={e => this.onInputKeyUp(e)}
                                     onChange={e => this.onInputChange(e)}
                                 />
                             </div>
