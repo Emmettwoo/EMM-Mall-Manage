@@ -13,15 +13,15 @@ class App extends React.Component {
             <Router>
                 <Switch>
                     <Route path="/login" component={Login} />
-                    <Route path="/" render={ (props) => {
+                    <Route path="/" render={ (props) => (
                         <Layout>
                             <Switch>
                                 <Route exact path="/" component={Home} />
-                                <Route exact path="/product" component={Home} />
-                                <Route exact path="/product-category" component={Home} />
+                                <Route path="/product" component={Home} />
+                                <Route path="/product-category" component={Home} />
                             </Switch>
                         </Layout>
-                    }} />
+                    )} />
                 </Switch>
             </Router>
         );
