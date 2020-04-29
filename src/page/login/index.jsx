@@ -3,7 +3,10 @@ import React from "react";
 import "./index.css";
 
 import PageTitle from 'component/page-title/index.jsx';
+
+import MallUtil from 'util/mall.jsx';
 import User from 'service/user-service.jsx';
+const _mall = new MallUtil();
 const _user = new User();
 
 
@@ -13,8 +16,9 @@ class Login extends React.Component {
         this.state = {
             username: "",
             password: "",
+            redirect: _mall.getUrlParam("redirect") || "/"
         };
-    }
+    };
 
     // 当输入框内容发生改变
     onInputChange(e) {
@@ -24,18 +28,25 @@ class Login extends React.Component {
             [inputType]: inputValue
         });
         // console.log(inputType + ": " + inputValue);
-    }
+    };
+
     // 当点击提交按钮时
     onSubmit(e) {
-        _user.login({
+        let loginInfo = {
             username: this.state.username,
             password: this.state.password
-        }).then((msg, data) => {
-            ;
-        }, (err) => {
-            ;
-        });
-    }
+        },
+        checkResult = _user.checkLoginInfo(loginInfo);
+        if(checkResult.status) {
+            _user.login(loginInfo).then((res) => {
+                this.props.history.push(this.state.redirect);
+            }, (err) => {
+                _mall.errorTips(err);
+            });
+        } else {
+            _mall.errorTips(checkResult.msg);
+        }
+    };
 
     render() {
         return (
@@ -75,7 +86,7 @@ class Login extends React.Component {
                 </div>
             </div>
         );
-    }
-}
+    };
+};
 
 export default Login;

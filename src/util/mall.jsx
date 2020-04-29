@@ -1,4 +1,5 @@
 class MallUtil {
+    // 处理接口调用请求
     request(param) {
         return new Promise((resolve, reject) => {
             $.ajax({
@@ -15,7 +16,7 @@ class MallUtil {
                     // 需要登入
                     else if (10 === res.status) {
                         alert(res.msg);
-                        _this.doLogin();
+                        this.doLogin();
                     }
                     // 错误请求
                     // else if(1 === res.status) {
@@ -28,7 +29,7 @@ class MallUtil {
                 },
                 error(err) {
                     typeof reject === 'function' && reject(err.statusText);
-                },
+                }
             });
         });
     };
@@ -36,6 +37,23 @@ class MallUtil {
     // 登入跳转函数
     doLogin() {
         window.location.href = './login?redirect=' + encodeURIComponent(window.location.pathname);
+    };
+    // 获取URL参数
+    getUrlParam(name) {
+        // 使用正则表达式适配参数
+        let queryString = window.location.search.split('?')[1] || '',
+            reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)'),
+            result = window.location.search.substr(1).match(reg);
+        return result ? decodeURIComponent(result[2]) : null;
+    };
+
+    // 成功提示
+    successTips(msg) {
+        alert(msg || "请求成功");
+    };
+    // 错误提示
+    errorTips(msg) {
+        alert(msg || "请求失败");
     };
 }
 
