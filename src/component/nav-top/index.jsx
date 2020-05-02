@@ -65,7 +65,7 @@ class NavTop extends React.Component {
                                     ) : (
                                         <a
                                             onClick={() => {
-                                                this.onLogout();
+                                                window.location.href = "/login";
                                             }}
                                         >
                                             <i className="fa fa-sign-in fa-fw"></i>
