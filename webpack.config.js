@@ -93,12 +93,12 @@ module.exports = {
         // 开发调试用的接口转发
         proxy: {
             "/manage": {
-                target: "http://admintest.happymmall.com",
+                target: "http://mall.emmettwoo.tech",
                 changeOrigin: true
             },
             // 登出接口使用门户的，非manage接口，故另行配置
             "/user/logout.do": {
-                target: "http://admintest.happymmall.com",
+                target: "http://mall.emmettwoo.tech",
                 changeOrigin: true
             }
         }
