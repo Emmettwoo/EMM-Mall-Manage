@@ -6,6 +6,7 @@ import User from "service/user-service.jsx";
 const _mall = new MallUtil();
 const _user = new User();
 
+// fixme: 载入页面时检查登入状态
 class NavTop extends React.Component {
     constructor(props) {
         super(props);

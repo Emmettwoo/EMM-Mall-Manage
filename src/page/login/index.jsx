@@ -9,6 +9,7 @@ import User from "service/user-service.jsx";
 const _mall = new MallUtil();
 const _user = new User();
 
+// fixme: 已登入状态直接跳转
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -39,6 +40,7 @@ class Login extends React.Component {
         if (checkResult.status) {
             _user.login(loginInfo).then(
                 (res) => {
+                    // fixme: 不写入数据，每次刷新获取登入状态
                     _mall.setStorage("userInfo", res.data);
                     this.props.history.push(this.state.redirect);
                 },
