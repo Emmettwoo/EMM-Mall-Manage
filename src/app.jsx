@@ -10,6 +10,7 @@ import {
 
 // 页面子组件
 import Layout from "component/layout/index.jsx";
+import ErrorPage from "page/error/index.jsx";
 import Home from "page/home/index.jsx";
 import Login from "page/login/index.jsx";
 
@@ -30,6 +31,9 @@ class App extends React.Component {
                                         path="/product-category"
                                         component={Home}
                                     />
+                                    <Route path="/order" component={Home} />
+                                    <Route path="/user" component={Home} />
+                                    <Route component={ErrorPage} />
                                 </Switch>
                             </Layout>
                         )}
