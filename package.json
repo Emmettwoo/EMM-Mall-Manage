@@ -1,7 +1,7 @@
 {
-  "name": "EMM-Mall-Manage",
-  "version": "1.0.0",
-  "description": "EMM-Mall Management Web Appliction",
+  "name": "emm-mall-manage",
+  "version": "0.2.0",
+  "description": "EMM-Mall's Management Application",
   "main": "index.js",
   "repository": "https://github.com/emmettwoo/emm-mall-manage",
   "author": "Emmett Woo",

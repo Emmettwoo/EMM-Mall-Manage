@@ -1,0 +1,31 @@
+.color-box {
+    display: block;
+    text-align: center;
+    color: #222222;
+    height: 160px;
+    padding: 20px 0;
+    opacity: .9;
+    transition: all .3s;
+
+    &:hover {
+        text-decoration: none;
+        color: #000000;
+        opacity: 1;
+        transform: scale(1.08);
+    }
+    &:focus {
+        text-decoration: none;
+    }
+
+    .count {
+        font-size: 50px;
+        height: 80px;
+        line-height: 80px;
+    }
+    .desc {
+        font-size: 18px;
+        .fa {
+            margin-right: 6px;
+        }
+    }
+}
