@@ -38,7 +38,7 @@ class MallUtil {
     // 登入跳转函数
     doLogin() {
         window.location.href =
-            "./login?redirect=" + encodeURIComponent(window.location.pathname);
+            "/login?redirect=" + encodeURIComponent(window.location.pathname);
     }
     // 获取URL参数
     getUrlParam(name) {
