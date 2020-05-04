@@ -97,7 +97,7 @@ module.exports = {
                 changeOrigin: true
             },
             // 登出接口使用门户的，非manage接口，故另行配置
-            "/user/logout.do": {
+            "/user/*.do": {
                 target: "http://mall.emmettwoo.tech",
                 changeOrigin: true
             }

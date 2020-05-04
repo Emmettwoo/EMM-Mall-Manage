@@ -22,6 +22,15 @@ class User {
         });
     }
 
+    // 用户登入状态检查
+    checkLogin() {
+        return _mall.request({
+            type: "post",
+            url: "/user/check_login.do",
+        });
+    }
+
+
     // 检查登入接口数据合法性
     checkLoginInfo(loginInfo) {
         let username = $.trim(loginInfo.username);

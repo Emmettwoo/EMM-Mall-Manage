@@ -9,7 +9,7 @@ import User from "service/user-service.jsx";
 const _mall = new MallUtil();
 const _user = new User();
 
-// fixme: 已登入状态直接跳转
+
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -18,6 +18,21 @@ class Login extends React.Component {
             password: "",
             redirect: _mall.getUrlParam("redirect") || "/",
         };
+    }
+    componentDidMount() {
+        this.checkLogin();
+    }
+
+    // 检查登入状态
+    checkLogin() {
+        _user.checkLogin().then(
+            (res) => {
+                this.props.history.push(this.state.redirect);
+            },
+            (err) => {
+                // do nothing.
+            }
+        );
     }
 
     // 当输入框内容发生改变
@@ -40,8 +55,6 @@ class Login extends React.Component {
         if (checkResult.status) {
             _user.login(loginInfo).then(
                 (res) => {
-                    // fixme: 不写入数据，每次刷新获取登入状态
-                    _mall.setStorage("userInfo", res.data);
                     this.props.history.push(this.state.redirect);
                 },
                 (err) => {

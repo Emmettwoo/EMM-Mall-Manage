@@ -29,7 +29,7 @@ class Home extends React.Component {
                 this.setState(res.data);
             },
             (err) => {
-                _mall.errorTips(err);
+                console.log("warnning: " + err);
             }
         );
     }

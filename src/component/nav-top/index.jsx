@@ -6,21 +6,34 @@ import User from "service/user-service.jsx";
 const _mall = new MallUtil();
 const _user = new User();
 
-// fixme: 载入页面时检查登入状态
+
 class NavTop extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: _mall.getStorage("userInfo").username,
+            username: null,
         };
+    }
+    componentDidMount() {
+        this.checkLogin();
+    }
+
+    // 检查登入状态
+    checkLogin() {
+        _user.checkLogin().then(
+            (res) => {
+                this.setState(res.data);
+            },
+            (err) => {
+                // do nothing.
+            }
+        );
     }
 
     // 登出逻辑
     onLogout() {
         _user.logout().then(
             (res) => {
-                _mall.removeStorage("userInfo");
-                // 这么跳转是不完美的，但是执行history的push需要Route对象，太麻烦
                 window.location.href = "/login";
             },
             (err) => {
