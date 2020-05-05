@@ -18,7 +18,7 @@ class ProductList extends React.Component {
         this.state = {
             list: [],
             pageNum: 1,
-            pageSize: 2,
+            pageSize: 10
         }
     }
     componentDidMount() {
