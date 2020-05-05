@@ -8,6 +8,7 @@ class TableList extends React.Component {
         }
     }
 
+    // 好像在这个时候设置有点早了
     componentWillReceiveProps() {
         this.setState({
             isFirstLoading: false
@@ -29,7 +30,7 @@ class TableList extends React.Component {
         let listInfo = (
             <tr>
                 <td colSpan={this.props.tableHeads.length} className="text-center">
-                    {this.state.firstLoading ? "商品列表载入中" : "商品列表为空"}
+                    {this.state.firstLoading ? "列表数据载入中" : "列表数据为空"}
                 </td>
             </tr>
         );
