@@ -2,6 +2,16 @@ import MallUtil from "util/mall.jsx";
 const _mall = new MallUtil();
 
 class User {
+    // 获取用户列表
+    getUserList(pageNum, pageSize) {
+        return _mall.request({
+            type: "post",
+            url: "/manage/user/list.do",
+            data: {pageNum, pageSize}
+        });
+    }
+
+
     // 用户登入接口调用
     login(userInfo) {
         return _mall.request({

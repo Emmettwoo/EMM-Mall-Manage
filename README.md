@@ -14,8 +14,8 @@
 ## Version.版本
 
 - [x] V0.1.0 Site Framework 网站框架
-- [ ] V0.2.0 [Common Function](/src/component) 通用功能
-- [ ] V0.3.0 [User Module](#) 用户模块
+- [x] V0.2.0 [Common Function](/src/component) 通用功能
+- [x] V0.3.0 [User Module](/src/page/user) 用户模块
 - [ ] V0.4.0 [Product Module](#) 商品模块
 - [ ] V0.5.0 [Category Module](#) 品类模块
 - [ ] V0.6.0 [Order Module](#) 订单模块
