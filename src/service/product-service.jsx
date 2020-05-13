@@ -2,12 +2,12 @@ import MallUtil from "util/mall.jsx";
 const _mall = new MallUtil();
 
 class Product {
-    // 获取商品列表
-    getProductList(pageNum, pageSize) {
+    // 获取所有或指定商品列表
+    getProductList(listParam) {
         return _mall.request({
             type: "post",
             url: "/manage/product/search.do",
-            data: {pageNum, pageSize}
+            data: listParam
         });
     }
 

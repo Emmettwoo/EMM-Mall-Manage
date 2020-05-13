@@ -46,6 +46,7 @@ class UserList extends React.Component {
 
 
     render() {
+        // todo: 删除用户按钮和功能的实现
         return (
             <div id="page-wrapper">
                 <PageTitle title="用户管理" />

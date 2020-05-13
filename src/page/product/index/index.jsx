@@ -1,10 +1,11 @@
 import React from "react";
 
+import "./index.scss";
+
 import PageTitle from "component/page-title/index.jsx";
 import Pagination from "util/pagination/index.jsx";
 import TableList from "util/table-list/index.jsx";
-
-import "./index.scss";
+import ListSearch from "./list-search.jsx";
 
 import MallUtil from "util/mall.jsx";
 import Product from "service/product-service.jsx";
@@ -12,13 +13,15 @@ import { Link } from "react-router-dom";
 const _mall = new MallUtil();
 const _product = new Product();
 
+
 class ProductList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             list: [],
             pageNum: 1,
-            pageSize: 10
+            pageSize: 10,
+            listType: 'list'
         }
     }
     componentDidMount() {
@@ -26,7 +29,21 @@ class ProductList extends React.Component {
     }
 
     loadProductList() {
-        _product.getProductList(this.state.pageNum, this.state.pageSize).then(
+        // 准备接口需要的数据
+        let listParam = {
+            pageNum: this.state.pageNum,
+            pageSize: this.state.pageSize
+        };
+        if(this.state.listType === "search") {
+            // 对搜索类型进行判断，搜索类型错误时显示全部商品
+            if(this.state.searchType === "productId") {
+                listParam.productId = this.state.searchKeyword;
+            } else if(this.state.searchType === "productName") {
+                listParam.productName = this.state.searchKeyword;
+            }
+        }
+        // 进行列表展示商品的搜索
+        _product.getProductList(listParam).then(
             (res) => {
                 this.setState(res.data);
             },
@@ -38,6 +55,18 @@ class ProductList extends React.Component {
             }
         );
     }
+    // 搜索商品
+    onSearch(searchType, searchKeyword) {
+        let listType = searchKeyword === "" ? "list" : "search";
+        this.setState({
+            listType: listType,
+            searchType: searchType,
+            searchKeyword: searchKeyword
+        }, () => {
+            this.loadProductList();
+        });
+    }
+    // 改变商品的上下架状态
     onSetProductStatus(e, productId, currentStatus) {
         let newStatus = currentStatus == 1 ? 0 : 1,
             confirmTips = currentStatus == 1 ? "确认下架该商品？" : "确认上架该商品？";
@@ -52,6 +81,7 @@ class ProductList extends React.Component {
             )
         }
     }
+    // 页数更改时重新载入数据
     onPageNumChange(pageNum) {
         this.setState({
             pageNum: pageNum
@@ -75,6 +105,7 @@ class ProductList extends React.Component {
         return (
             <div id="page-wrapper">
                 <PageTitle title="商品管理" />
+                <ListSearch onSearch={(searchType, searchKeyword) => {this.onSearch(searchType, searchKeyword)}}/>
                 <TableList tableHeads = {tableHeads}>
                     {
                         this.state.list.map(
