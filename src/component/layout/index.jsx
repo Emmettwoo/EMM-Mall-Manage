@@ -1,5 +1,6 @@
 import React from "react";
 import "./theme.css";
+import "./index.scss";
 
 // 页面子组件
 import NavTop from "component/nav-top/index.jsx";
