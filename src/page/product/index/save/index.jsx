@@ -1,8 +1,10 @@
 // 业务组件，非通用组件
 import React from "react";
 
+import "./index.scss";
 import PageTitle from "component/page-title/index.jsx";
 import CategorySelector from "../../util/category-selector/index.jsx";
+import FileUploader from "util/file-uploader/index.jsx";
 
 import MallUtil from "util/mall.jsx";
 import Product from "service/product-service.jsx";
@@ -26,7 +28,7 @@ class ProductSave extends React.Component {
         return (
             <div id="page-wrapper">
                 <PageTitle title="添加商品" />
-                <form className="form-horizontal">
+                <div className="form-horizontal">
                     <div className="form-group">
                         <label
                             className="col-md-2 control-label"
@@ -96,7 +98,7 @@ class ProductSave extends React.Component {
                             商品图片
                         </label>
                         <div className="col-md-10">
-                            pic;
+                            <FileUploader />
                         </div>
                     </div>
                     <div className="form-group">
@@ -116,7 +118,7 @@ class ProductSave extends React.Component {
                             </button>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         );
     }
