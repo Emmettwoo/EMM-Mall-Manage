@@ -4,6 +4,7 @@ import React from "react";
 import "./index.scss";
 import PageTitle from "component/page-title/index.jsx";
 import CategorySelector from "../../util/category-selector/index.jsx";
+import RichEditor from "../../util/rich-editor/index.jsx";
 import FileUploader from "util/file-uploader/index.jsx";
 
 import MallUtil from "util/mall.jsx";
@@ -19,6 +20,8 @@ class ProductSave extends React.Component {
             subImages: [],
         };
     }
+
+
     // 分类被选定后的回调函数
     onCategoryChange(categoryId) {
         console.log("分类选中成功: " + categoryId);
@@ -52,6 +55,15 @@ class ProductSave extends React.Component {
             });
         }
     }
+
+    // 富文本编辑器的变化
+    onDetailValueChange(value) {
+        console.log(value);
+        this.setState({
+            datail: value
+        });
+    }
+
     render() {
         return (
             <div id="page-wrapper">
@@ -158,7 +170,9 @@ class ProductSave extends React.Component {
                         <label className="col-md-2 control-label">
                             商品详情
                         </label>
-                        <div className="col-md-10">editor;</div>
+                        <div className="col-md-10">
+                            <RichEditor onValueChange={(value) => this.onDetailValueChange(value)} />
+                        </div>
                     </div>
                     <div className="form-group">
                         <div className="col-sm-offset-2 col-md-10">
