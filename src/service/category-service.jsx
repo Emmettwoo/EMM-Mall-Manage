@@ -36,6 +36,17 @@ class Category {
         });
     }
 
+    setCategoryStatus(categoryId, status) {
+        return _mall.request({
+            type: "post",
+            url: "/manage/category/update.do",
+            data: {
+                categoryId: categoryId,
+                status: status
+            }
+        });
+    }
+
     // 新增品类的信息
     addCategory(categoryName, parentId) {
         return _mall.request({
