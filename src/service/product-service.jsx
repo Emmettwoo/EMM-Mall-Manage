@@ -11,6 +11,16 @@ class Product {
         });
     }
 
+    // 获取单个商品的信息
+    getProduct(productId) {
+        return _mall.request({
+            type: "post",
+            url: "/manage/product/detail.do",
+            data: {
+                productId: productId || null
+            }
+        });
+    }
     // 设置商品上下架状态
     setProductStatus(productId, status) {
         return _mall.request({
@@ -27,7 +37,7 @@ class Product {
                 status: false,
                 msg: "商品名称不能为空",
             };
-        } else if (typeof product.subTitle !== "string" || product.subTitle.length === 0) {
+        } else if (typeof product.subtitle !== "string" || product.subtitle.length === 0) {
             return {
                 status: false,
                 msg: "商品描述不能为空",

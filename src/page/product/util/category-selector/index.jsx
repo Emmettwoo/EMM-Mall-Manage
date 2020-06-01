@@ -22,6 +22,32 @@ class CategorySelector extends React.Component {
     componentDidMount() {
         this.loadCategoryList(0);
     }
+    componentWillReceiveProps(nextProps) {
+        let isCategoryIdChange = nextProps.categoryId !== this.props.categoryId,
+            isParentCategoryIdChange = nextProps.parentCategoryId !== this.props.parentCategoryId;
+        // 数据没有发生变化，直接返回不处理
+        if(!isCategoryIdChange && !isParentCategoryIdChange) {
+            return;
+        }
+        // fixme:
+        // 假如只存在一级品类
+        if(nextProps.parentCategoryId === 0) {
+            this.setState({
+                firstCategoryId: nextProps.categoryId,
+                secondCategoryId: -1
+            });
+        }
+        // 假如是属于二级品类
+        else {
+            this.setState({
+                firstCategoryId: nextProps.parentCategoryId,
+                secondCategoryId: nextProps.categoryId
+            }, () => {
+                console.log(this.state.firstCategoryId);
+                this.loadCategoryList(this.state.firstCategoryId);
+            });
+        }
+    }
 
     // 一级品类被选定后
     onFirstCategoryChange(e) {
@@ -66,7 +92,7 @@ class CategorySelector extends React.Component {
         let hasOnCategoryChange = typeof this.props.onCategoryChange === "function";
         // 二级品类被选中
         if (this.state.secondCategoryId > 0) {
-            hasOnCategoryChange && this.props.onCategoryChange(this.state.secondCategoryId);
+            hasOnCategoryChange && this.props.onCategoryChange(this.state.firstCategoryId, this.state.secondCategoryId);
         } else {
             _mall.errorTips("二级品类不能为空");
         }
@@ -77,7 +103,8 @@ class CategorySelector extends React.Component {
         return (
             <div className="col-md-10">
                 <select className="form-control category-selector"
-                    onChange={(e) => this.onFirstCategoryChange(e)}>
+                    onChange={(e) => this.onFirstCategoryChange(e)}
+                    value={this.state.firstCategoryId}>
                     <option value="-1">请选择一级分类</option>
                     {
                         this.state.firstCategoryList.map((category, index) => 

@@ -12,13 +12,15 @@ import Product from "service/product-service.jsx";
 const _mall = new MallUtil();
 const _product = new Product();
 
-class ProductSave extends React.Component {
+class ProductEdit extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            id: this.props.match.params.pid,
             categoryId: 0,
+            parentCategoryId: 0,
             name: "",
-            subTitle: "",
+            subtitle: "",
             mainImage: "",
             subImages: [],
             detail: "",
@@ -28,11 +30,36 @@ class ProductSave extends React.Component {
         };
     }
 
+    componentDidMount() {
+        this.loadProduct();
+    }
+    // 加载商品详情（若存在）
+    loadProduct() {
+        if(this.state.id) {
+            _product.getProduct(this.state.id).then(
+                (res) => {
+                    let images = res.data.subImages.split(',');
+                    res.data.subImages = images.map((imgUri) => {
+                        return {
+                            uri: imgUri,
+                            url: res.data.imageHost + imgUri
+                        }
+                    });
+                    res.data.defaultDetail = res.data.detail;
+                    this.setState(res.data);
+                }, (err) => {
+                    _mall.errorTips(err);
+                }
+            )
+        }
+    }
+
 
     // 分类被选定后的回调函数
-    onCategoryChange(categoryId) {
+    onCategoryChange(parentCategoryId, categoryId) {
         this.setState({
-            categoryId: categoryId,
+            parentCategoryId: parentCategoryId,
+            categoryId: categoryId, 
         });
     }
     // 商品图片上传成功的回调函数
@@ -89,7 +116,7 @@ class ProductSave extends React.Component {
         let product = {
             categoryId: parseInt(this.state.categoryId),
             name: this.state.name,
-            subTitle: this.state.subTitle,
+            subtitle: this.state.subtitle,
             mainImage: this.getMainImageString(),
             subImages: this.getSubImagesString(),
             detail: this.state.detail,
@@ -98,6 +125,9 @@ class ProductSave extends React.Component {
             status: this.state.status,
         },
         productCheckResult = _product.checkProduct(product);
+        if(this.state.id) {
+            product.id = this.state.id;
+        }
         if(productCheckResult.status) {
             _product.saveProduct(product).then(
                 (res) => {
@@ -126,6 +156,7 @@ class ProductSave extends React.Component {
                                 type="text"
                                 className="form-control"
                                 placeholder="请输入商品名称"
+                                value={this.state.name}
                                 name="name"
                                 onChange={(e) => this.onValueChange(e)}
                             />
@@ -140,7 +171,8 @@ class ProductSave extends React.Component {
                                 type="text"
                                 className="form-control"
                                 placeholder="请输入商品描述"
-                                name="subTitle"
+                                value={this.state.subtitle}
+                                name="subtitle"
                                 onChange={(e) => this.onValueChange(e)}
                             />
                         </div>
@@ -150,8 +182,10 @@ class ProductSave extends React.Component {
                             商品类别
                         </label>
                         <CategorySelector
-                            onCategoryChange={(categoryId) =>
-                                this.onCategoryChange(categoryId)
+                            categoryId={this.state.categoryId}
+                            parentCategoryId={this.state.parentCategoryId}
+                            onCategoryChange={(parentCategoryId, categoryId) =>
+                                this.onCategoryChange(parentCategoryId, categoryId)
                             }
                         />
                     </div>
@@ -166,6 +200,7 @@ class ProductSave extends React.Component {
                                     className="form-control"
                                     placeholder="请输入商品价格"
                                     aria-describedby="basic-addon2"
+                                    value={this.state.price}
                                     name="price"
                                     onChange={(e) => this.onValueChange(e)}
                                 />
@@ -184,6 +219,7 @@ class ProductSave extends React.Component {
                                     className="form-control"
                                     placeholder="请输入商品库存"
                                     aria-describedby="basic-addon2"
+                                    value={this.state.stock}
                                     name="stock"
                                     onChange={(e) => this.onValueChange(e)}
                                 />
@@ -198,11 +234,10 @@ class ProductSave extends React.Component {
                         <div className="col-md-10">
                             {this.state.subImages.length
                                 ? this.state.subImages.map((image, index) => (
-                                      <div className="image-content">
+                                      <div className="image-content" key={index}>
                                           <img
                                               src={image.url}
                                               alt={image.uri}
-                                              key={index}
                                           />
                                           <i
                                               className="fa fa-close"
@@ -227,7 +262,10 @@ class ProductSave extends React.Component {
                             商品详情
                         </label>
                         <div className="col-md-10">
-                            <RichEditor onValueChange={(value) => this.onDetailValueChange(value)} />
+                            <RichEditor 
+                                detail={this.state.detail}
+                                defaultDetail={this.state.defaultDetail}
+                                onValueChange={(value) => this.onDetailValueChange(value)} />
                         </div>
                     </div>
                     <div className="form-group">
@@ -243,4 +281,4 @@ class ProductSave extends React.Component {
     }
 }
 
-export default ProductSave;
+export default ProductEdit;
