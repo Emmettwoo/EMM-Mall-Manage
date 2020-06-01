@@ -99,18 +99,26 @@ class CategoryList extends React.Component {
         // todo: 删除用户按钮和功能的实现
         return (
             <div id="page-wrapper">
-                <PageTitle title="品类管理" />
+                <PageTitle title="品类管理">
+                    <div className="page-header-right">
+                        
+                        {
+                            this.state.parentCategoryId !== 0 ?
+                            <button className="btn btn-primary" onClick={(e) => {this.resetParentCategoryId();}}>
+                                <i className="fa fa-arrow-left"></i>
+                                <span>&nbsp;返回根类</span>
+                            </button> :
+                            <Link className="btn btn-primary" to="/product-category/add">
+                                <i className="fa fa-plus"></i>
+                                <span>&nbsp;添加品类</span>
+                            </Link>
+                        }
+                    </div>
+                </PageTitle>
                 <div className="row">
                     <div className="col-md-12">
                         <p>
                             <span className="parentIdInfo" >当前父品类ID: {this.state.parentCategoryId}</span>
-                            {
-                                this.state.parentCategoryId !== 0 ?
-                                <button className="btn btn-xs btn-primary" onClick={(e) => {this.resetParentCategoryId();}}>
-                                    返回
-                                </button> :
-                                <Link className="btn btn-xs btn-warning" to={"/product-category/add"}>新增</Link>
-                            }
                         </p>
                     </div>
                 </div>
@@ -123,11 +131,11 @@ class CategoryList extends React.Component {
                                         <td>{category.id}</td>
                                         <td>{category.name}</td>
                                         <td>
-                                        <a className="opera" onClick={(e) => this.onUpdateName(category.id, category.name)}>修改名称</a>
-                                        <a className="opera" onClick={(e) => this.deleteCategory(category.id)}>删除品类</a>
+                                        <a className="btn btn-xs btn-primary" onClick={(e) => this.onUpdateName(category.id, category.name)}>修改名称</a>
+                                        <a className="btn btn-xs btn-danger" onClick={(e) => this.deleteCategory(category.id)}>删除品类</a>
                                             {
                                                 this.state.parentCategoryId === 0
-                                                ? <Link to={"/product-category/" + category.id}>查看子品类</Link>
+                                                ? <Link className="btn btn-xs btn-success" to={"/product-category/" + category.id}>查看子品类</Link>
                                                 : null
                                             }
                                         </td>
