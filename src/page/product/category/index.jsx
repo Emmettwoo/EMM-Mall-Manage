@@ -77,6 +77,19 @@ class CategoryList extends React.Component {
         }
     }
 
+    deleteCategory(categoryId) {
+        if(confirm("确认删除该品类？") && categoryId!==0) {
+            _category.deleteCategory(categoryId).then(
+                (res) => {
+                    _mall.successTips(res.msg);
+                    this.loadCategoryList();
+                }, (err) => {
+                    _mall.errorTips(err);
+                }
+            );
+        }
+    }
+
     onProductAdd() {
         ;
     }
@@ -110,7 +123,8 @@ class CategoryList extends React.Component {
                                         <td>{category.id}</td>
                                         <td>{category.name}</td>
                                         <td>
-                                            <a className="opera" onClick={(e) => this.onUpdateName(category.id, category.name)}>修改名称</a>
+                                        <a className="opera" onClick={(e) => this.onUpdateName(category.id, category.name)}>修改名称</a>
+                                        <a className="opera" onClick={(e) => this.deleteCategory(category.id)}>删除品类</a>
                                             {
                                                 this.state.parentCategoryId === 0
                                                 ? <Link to={"/product-category/" + category.id}>查看子品类</Link>

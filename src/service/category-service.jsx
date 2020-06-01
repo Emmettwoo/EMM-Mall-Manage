@@ -38,13 +38,23 @@ class Category {
 
     // 新增品类的信息
     addCategory(categoryName, parentId) {
-        console.log(categoryName);
         return _mall.request({
             type: "post",
             url: "/manage/category/add.do",
             data: {
                 categoryName: categoryName, 
                 parentId: parentId
+            }
+        });
+    }
+
+    // 删除某一品类
+    deleteCategory(categoryId) {
+        return _mall.request({
+            type: "post",
+            url: "/manage/category/delete.do",
+            data: {
+                categoryId: categoryId
             }
         });
     }
