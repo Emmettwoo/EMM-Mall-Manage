@@ -164,7 +164,7 @@ class ProductEdit extends React.Component {
     render() {
         return (
             <div id="page-wrapper">
-                <PageTitle title="添加商品" />
+                <PageTitle title={this.state.id!=null ? "编辑商品" : "添加商品"} />
                 <div className="form-horizontal">
                     <div className="form-group">
                         <label className="col-md-2 control-label">
@@ -290,10 +290,10 @@ class ProductEdit extends React.Component {
                     <div className="form-group">
                         <div className="col-sm-offset-2 col-md-10">
                             <button type="submit" className="btn btn-primary" onClick={(e) => {this.onSubmit()}}>
-                                保存修改
+                                {this.state.id!=null ? "保存信息" : "添加商品"}
                             </button>
                             <button className="btn btn-danger" onClick={(e) => {this.onDelete()}}>
-                                删除商品
+                                {this.state.id!=null ? "删除商品" : "放弃添加"}
                             </button>
                         </div>
                     </div>

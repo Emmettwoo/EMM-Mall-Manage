@@ -43,7 +43,6 @@ class CategorySelector extends React.Component {
                 firstCategoryId: nextProps.parentCategoryId,
                 secondCategoryId: nextProps.categoryId
             }, () => {
-                console.log(this.state.firstCategoryId);
                 this.loadCategoryList(this.state.firstCategoryId);
             });
         }
