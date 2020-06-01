@@ -21,6 +21,7 @@ class Product {
             }
         });
     }
+
     // 设置商品上下架状态
     setProductStatus(productId, status) {
         return _mall.request({
@@ -30,7 +31,18 @@ class Product {
         });
     }
 
-    // 检查保存商品表单数据
+    // 删除单个商品的信息
+    deleteProduct(productId) {
+        return _mall.request({
+            type: "post",
+            url: "/manage/product/delete.do",
+            data: {
+                productId: productId || null
+            }
+        });
+    }
+
+    // 检查保存商品表单数据合法性
     checkProduct(product) {
         if (typeof product.name !== "string" || product.name.length === 0) {
             return {

@@ -142,6 +142,25 @@ class ProductEdit extends React.Component {
         }
     }
 
+    // 删除当前编辑商品
+    onDelete(e) {
+        let productId = this.state.id,
+            productName = this.state.name;
+        if(!productId && confirm("放弃新增商品草稿并返回？")) {
+            this.props.history.push("/product/index");
+            return;
+        } else if (productId && confirm("确认删除商品 [" + productName + "] (id: " + productId + ") 吗？")) {
+            _product.deleteProduct(productId).then(
+                (res) => {
+                    _mall.successTips("删除成功，返回列表页。");
+                    this.props.history.push("/product/index");
+                }, (err) => {
+                    _mall.errorTips(err);
+                }
+            );
+        }
+    }
+
     render() {
         return (
             <div id="page-wrapper">
@@ -272,6 +291,9 @@ class ProductEdit extends React.Component {
                         <div className="col-sm-offset-2 col-md-10">
                             <button type="submit" className="btn btn-primary" onClick={(e) => {this.onSubmit()}}>
                                 保存修改
+                            </button>
+                            <button className="btn btn-danger" onClick={(e) => {this.onDelete()}}>
+                                删除商品
                             </button>
                         </div>
                     </div>
