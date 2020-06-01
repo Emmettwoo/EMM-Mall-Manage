@@ -1,8 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import PageTitle from "component/page-title/index.jsx";
 import Pagination from "util/pagination/index.jsx";
+import TableList from "util/table-list/index.jsx";
 
 import MallUtil from "util/mall.jsx";
 import User from "service/user-service.jsx";
@@ -16,8 +16,7 @@ class UserList extends React.Component {
         this.state = {
             list: [],
             pageNum: 1,
-            pageSize: 10,
-            firstLoading: true
+            pageSize: 10
         }
     }
     componentDidMount() {
@@ -27,16 +26,11 @@ class UserList extends React.Component {
     loadUserList() {
         _user.getUserList(this.state.pageNum, this.state.pageSize).then(
             (res) => {
-                this.setState(res.data, () => {
-                    this.setState({
-                        firstLoading: false
-                    });
-                });
+                this.setState(res.data);
             },
             (err) => {
                 this.setState({
-                    list: [],
-                    firstLoading: false
+                    list: []
                 });
                 _mall.errorTips(err);
             }
@@ -52,55 +46,29 @@ class UserList extends React.Component {
 
 
     render() {
-        let listBody = (
-            this.state.list.map(
-                (user, index) => {
-                    return (
-                        <tr key={index}>
-                            <td>{user.id}</td>
-                            <td>{user.username}</td>
-                            <td>{user.role}</td>
-                            <td>{user.email}</td>
-                            <td>{user.phone}</td>
-                            <td>{user.createTime}</td>
-                            <td>{user.updateTime}</td>
-                        </tr>
-                    );
-                }
-            )
-        );
-        let listError = (
-            <tr>
-                <td colSpan="7" className="text-center">
-                    {this.state.firstLoading ? "用户列表载入中" : "用户列表为空"}
-                </td>
-            </tr>
-        );
-        let tableBody = this.state.list.length > 0 ? listBody : listError;
-
+        // todo: 删除用户按钮和功能的实现
         return (
             <div id="page-wrapper">
                 <PageTitle title="用户管理" />
-                <div className="row">
-                    <div className="col-md-12">
-                        <table className="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>用户名</th>
-                                    <th>账户类型</th>
-                                    <th>电子邮箱</th>
-                                    <th>手机号</th>
-                                    <th>注册时间</th>
-                                    <th>更新时间</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {tableBody}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                <TableList tableHeads={["ID", "用户名", "账户类型", "电子邮箱", "手机号", "注册时间", "更新时间"]}>
+                    {
+                        this.state.list.map(
+                            (user, index) => {
+                                return (
+                                    <tr key={index}>
+                                        <td>{user.id}</td>
+                                        <td>{user.username}</td>
+                                        <td>{user.role}</td>
+                                        <td>{user.email}</td>
+                                        <td>{user.phone}</td>
+                                        <td>{user.createTime}</td>
+                                        <td>{user.updateTime}</td>
+                                    </tr>
+                                );
+                            }
+                        )
+                    }
+                </TableList>
                 <Pagination
                     current={this.state.pageNum}
                     total={this.state.total}

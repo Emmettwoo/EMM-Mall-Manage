@@ -27,7 +27,7 @@ class Login extends React.Component {
     checkLogin() {
         _user.checkLogin().then(
             (res) => {
-                this.props.history.push(this.state.redirect);
+                alert("当前已登入，重新登入将覆盖状态");
             },
             (err) => {
                 // do nothing.
@@ -42,7 +42,6 @@ class Login extends React.Component {
         this.setState({
             [inputType]: inputValue,
         });
-        // console.log(inputType + ": " + inputValue);
     }
 
     // 当点击提交按钮时

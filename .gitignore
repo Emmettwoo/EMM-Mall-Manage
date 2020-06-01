@@ -1,5 +1,6 @@
 # eclipse/vsc files
 .settings/
+.vscode/
 .project
 .classpath
 

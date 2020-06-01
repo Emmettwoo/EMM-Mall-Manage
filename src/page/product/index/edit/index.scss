@@ -1,0 +1,44 @@
+$image-size: 80px;
+
+.image-content {
+    width: $image-size;
+    height: $image-size;
+    float: left;
+    margin-right: 10px;
+    border: 1px solid #cccccc;
+    position: relative;
+
+    img {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+    .fa-close {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        height: $image-size;
+        line-height: $image-size;
+        cursor: pointer;
+        display: none;
+        font-size: 50px;
+        color: #aaaaaa;
+        background: rgba(0,0,0, .2);
+    }
+    &:hover {
+        .fa-close {
+            display: block;
+        }
+    }
+}
+
+.file-upload-content {
+    margin-top: 15px;
+}
+
+.btn {
+    margin-right: 20px;
+}

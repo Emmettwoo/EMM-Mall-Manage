@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 
+import Copyright from "component/copyright/index.jsx";
+
 class NavSide extends React.Component {
     constructor(props) {
         super(props);
@@ -80,6 +82,7 @@ class NavSide extends React.Component {
                         </li>
                     </ul>
                 </div>
+                <Copyright />
             </div>
         );
     }

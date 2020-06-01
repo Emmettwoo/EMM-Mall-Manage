@@ -1956,11 +1956,6 @@ domhandler@^2.3.0:
   dependencies:
     domelementtype "1"
 
-dompurify@^1.0.8:
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-1.0.11.tgz#fe0f4a40d147f7cebbe31a50a1357539cfc1eb4d"
-  integrity sha512-XywCTXZtc/qCX3iprD1pIklRVk/uhl8BKpkTxr+ZyMVUzSUg7wkQXRBp/euJ5J5moa1QvfpvaPQVP71z1O59dQ==
-
 domutils@1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/domutils/-/domutils-1.5.1.tgz#dcd8488a26f563d61079e48c9f7b7e32373682cf"
@@ -3409,15 +3404,10 @@ jquery@2.x:
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-2.2.4.tgz#2c89d6889b5eac522a7eea32c14521559c6cbf02"
   integrity sha1-LInWiJterFIqfuoywUUhVZxsvwI=
 
-jquery@^3.0.0, jquery@^3.4.1:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.0.tgz#9980b97d9e4194611c36530e7dc46a58d7340fc9"
-  integrity sha512-Xb7SVYMvygPxbFMpTFQiHh1J7HClEaThguL15N/Gg37Lri/qKyhRGZYzHRyLH8Stq3Aow0LsHO2O2ci86fCrNQ==
-
-jquery@~3.1.0:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.1.1.tgz#347c1c21c7e004115e0a4da32cece041fad3c8a3"
-  integrity sha1-NHwcIcfgBBFeCk2jLOzgQfrTyKM=
+jquery@~2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-2.1.4.tgz#228bde698a0c61431dc2630a6a154f15890d2317"
+  integrity sha1-IoveaYoMYUMdwmMKahVPFYkNIxc=
 
 js-base64@^2.1.8, js-base64@^2.1.9:
   version "2.5.2"
@@ -5506,17 +5496,16 @@ signal-exit@^3.0.0:
   integrity sha512-VUJ49FC8U1OxwZLxIbTTrDvLnf/6TDgxZcK8wxR8zs13xpx7xbG60ndBlhNrFi2EMuFRoeDoJO7wthSLq42EjA==
 
 simditor@^2.3.6:
-  version "2.3.28"
-  resolved "https://registry.yarnpkg.com/simditor/-/simditor-2.3.28.tgz#294e86eeae3e0e57255910aac9dd9070cc495628"
-  integrity sha512-nO20L2NZ3LsGZtvX291hd0gHiBLC56Oh/SHTwektM1tNBD35wQ0moFHoQ7Yumt9XoRiZL3aCQT2mv4jcVC3clQ==
+  version "2.3.6"
+  resolved "https://registry.yarnpkg.com/simditor/-/simditor-2.3.6.tgz#ba71edc3161fc438466c336c9c10052743403947"
+  integrity sha1-unHtwxYfxDhGbDNsnBAFJ0NAOUc=
   dependencies:
-    dompurify "^1.0.8"
-    jquery "^3.4.1"
-    simple-hotkeys "^1.0.3"
-    simple-module "^3.0.3"
-    simple-uploader "^3.0.0"
+    jquery "~2.1.4"
+    simple-hotkeys "~1.0.3"
+    simple-module "~2.0.6"
+    simple-uploader "~2.0.7"
 
-simple-hotkeys@^1.0.3:
+simple-hotkeys@~1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/simple-hotkeys/-/simple-hotkeys-1.0.3.tgz#47a5bc35362ca7339611bd09a84fa37818b0bbc6"
   integrity sha1-R6W8NTYspzOWEb0JqE+jeBiwu8Y=
@@ -5524,27 +5513,20 @@ simple-hotkeys@^1.0.3:
     jquery "2.x"
     simple-module "~2.0.5"
 
-simple-module@^3.0.3, simple-module@~3.0.0:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/simple-module/-/simple-module-3.0.3.tgz#ad52766785d27cd9427ee8645a49e41199725a92"
-  integrity sha1-rVJ2Z4XSfNlCfuhkWknkEZlyWpI=
-  dependencies:
-    jquery "^3.0.0"
-
-simple-module@~2.0.5:
+simple-module@~2.0.5, simple-module@~2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/simple-module/-/simple-module-2.0.6.tgz#cec8250325f8c7f575f4aa75c919b38396a6037b"
   integrity sha1-zsglAyX4x/V19Kp1yRmzg5amA3s=
   dependencies:
     jquery "2.x"
 
-simple-uploader@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/simple-uploader/-/simple-uploader-3.0.0.tgz#c09f706f1cfcbea1fe780e35759a683b1336d4d1"
-  integrity sha1-wJ9wbxz8vqH+eA41dZpoOxM21NE=
+simple-uploader@~2.0.7:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/simple-uploader/-/simple-uploader-2.0.8.tgz#5fc4106c6d968b0b353293e3b16094aafde957ba"
+  integrity sha1-X8QQbG2Wiws1MpPjsWCUqv3pV7o=
   dependencies:
-    jquery "~3.1.0"
-    simple-module "~3.0.0"
+    jquery "2.x"
+    simple-module "~2.0.5"
 
 slash@^1.0.0:
   version "1.0.0"

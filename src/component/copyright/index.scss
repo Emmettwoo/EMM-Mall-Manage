@@ -1,0 +1,33 @@
+@media(max-width:768px) {
+    .copyright-content {
+        display: none;
+    }
+}
+
+.copyright-content {
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 10px;
+    text-align: center;
+    margin-left: 10px;
+}
+.copyright-content p {
+    margin: 0;
+}
+.copyright-content .beian .police_beian_icon {
+    margin-bottom: 5px;
+}
+
+.copyright {
+    color: #484848;
+}
+
+.link {
+    color: #484848;
+    cursor: pointer;
+    text-decoration: none;
+}
+.link:hover {
+    color: #B5B5B5;
+    text-decoration: none;
+}
