@@ -34,11 +34,11 @@ class ProductList extends React.Component {
             pageNum: this.state.pageNum,
             pageSize: this.state.pageSize
         };
-        if(this.state.listType === "search") {
+        if (this.state.listType === "search") {
             // 对搜索类型进行判断，搜索类型错误时显示全部商品
-            if(this.state.searchType === "productId") {
+            if (this.state.searchType === "productId") {
                 listParam.productId = this.state.searchKeyword;
-            } else if(this.state.searchType === "productName") {
+            } else if (this.state.searchType === "productName") {
                 listParam.productName = this.state.searchKeyword;
             }
         }
@@ -70,7 +70,7 @@ class ProductList extends React.Component {
     onSetProductStatus(e, productId, currentStatus) {
         let newStatus = currentStatus == 1 ? 0 : 1,
             confirmTips = currentStatus == 1 ? "确认下架该商品？" : "确认上架该商品？";
-        if(window.confirm(confirmTips)) {
+        if (window.confirm(confirmTips)) {
             _product.setProductStatus(productId, newStatus).then(
                 (res) => {
                     this.loadProductList();
@@ -93,13 +93,13 @@ class ProductList extends React.Component {
 
     render() {
         let tableHeads = [
-            {name: "ID", width: "10%"},
-            {name: "名称", width: "40%"},
-            {name: "类别", width: "10%"},
-            {name: "价格", width: "10%"},
-            {name: "库存", width: "10%"},
-            {name: "状态", width: "10%"},
-            {name: "操作", width: "10%"}
+            { name: "ID", width: "10%" },
+            { name: "名称", width: "40%" },
+            { name: "类别", width: "10%" },
+            { name: "价格", width: "10%" },
+            { name: "库存", width: "10%" },
+            { name: "状态", width: "10%" },
+            { name: "操作", width: "10%" }
         ];
 
         return (
@@ -112,31 +112,27 @@ class ProductList extends React.Component {
                         </Link>
                     </div>
                 </PageTitle>
-                <ListSearch onSearch={(searchType, searchKeyword) => {this.onSearch(searchType, searchKeyword)}}/>
-                <TableList tableHeads = {tableHeads}>
+                <ListSearch onSearch={(searchType, searchKeyword) => { this.onSearch(searchType, searchKeyword) }} />
+                <TableList tableHeads={tableHeads}>
                     {
                         this.state.list.map(
                             (product, index) => {
                                 return (
                                     <tr key={index}>
-                                        <td>{product.id}</td>
-                                        <td>
-                                            <p>{product.name}</p>
-                                            <p>{product.subtitle}</p>
-                                        </td>
-                                        <td>{product.categoryId}</td>
-                                        <td>￥{product.price}</td>
-                                        <td>{product.stock}</td>
+                                        <td><p>{product.id}</p></td>
+                                        <td><p>{product.name}</p></td>
+                                        <td><p>{product.categoryId}</p></td>
+                                        <td><p>￥{product.price}</p></td>
+                                        <td><p>{product.stock}</p></td>
                                         <td>
                                             {<p>{product.status == 1 ? "在售" : "停售"}</p>}
-                                            <button className="btn btn-xs btn-warning" onClick={(e) => 
-                                            {this.onSetProductStatus(e, product.id, product.status)}}>
-                                                {product.status == 1 ? "下架" : "上架"}
-                                            </button>
                                         </td>
                                         <td>
-                                            <Link className="opera" to={"/product/detail/" + product.id}>详情</Link>
-                                            <Link className="opera" to={"/product/edit/" + product.id}>编辑</Link>
+
+                                            <button className="btn btn-xs btn-warning" onClick={(e) => { this.onSetProductStatus(e, product.id, product.status) }}>
+                                                {product.status == 1 ? "下架" : "上架"}
+                                            </button>
+                                            <Link className="btn btn-xs btn-primary" to={"/product/edit/" + product.id}>编辑</Link>
                                         </td>
                                     </tr>
                                 );
