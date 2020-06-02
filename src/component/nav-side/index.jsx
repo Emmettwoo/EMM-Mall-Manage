@@ -29,7 +29,7 @@ class NavSide extends React.Component {
                                 <li>
                                     <NavLink
                                         activeClassName="active-menu"
-                                        to="/product"
+                                        to="/product/index"
                                     >
                                         商品管理
                                     </NavLink>
@@ -55,7 +55,7 @@ class NavSide extends React.Component {
                                 <li>
                                     <NavLink
                                         activeClassName="active-menu"
-                                        to="/order"
+                                        to="/order/index"
                                     >
                                         订单管理
                                     </NavLink>
@@ -73,7 +73,7 @@ class NavSide extends React.Component {
                                 <li>
                                     <NavLink
                                         activeClassName="active-menu"
-                                        to="/user"
+                                        to="/user/index"
                                     >
                                         用户管理
                                     </NavLink>

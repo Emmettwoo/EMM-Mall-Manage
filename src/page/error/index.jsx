@@ -3,7 +3,7 @@ import PageTitle from "component/page-title/index.jsx";
 import { Link } from "react-router-dom";
 
 
-class Error extends React.Component {
+class ErrorPage extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -23,4 +23,4 @@ class Error extends React.Component {
     }
 }
 
-export default Error;
+export default ErrorPage;
