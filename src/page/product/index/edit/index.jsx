@@ -146,10 +146,10 @@ class ProductEdit extends React.Component {
     onDelete(e) {
         let productId = this.state.id,
             productName = this.state.name;
-        if(!productId && confirm("放弃新增商品草稿并返回？")) {
+        if(!(productId!=null) && confirm("放弃新增商品草稿并返回？")) {
             this.props.history.push("/product/index");
             return;
-        } else if (productId && confirm("确认删除商品 [" + productName + "] (id: " + productId + ") 吗？")) {
+        } else if (productId!=null && confirm("确认删除商品 [" + productName + "] (id: " + productId + ") 吗？")) {
             _product.deleteProduct(productId).then(
                 (res) => {
                     _mall.successTips("删除成功，返回列表页。");
