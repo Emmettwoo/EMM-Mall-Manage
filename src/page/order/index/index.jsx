@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import PageTitle from "component/page-title/index.jsx";
 import Pagination from "util/pagination/index.jsx";
 import TableList from "util/table-list/index.jsx";
-import ListSearch from "./util/list-search.jsx";
+import ListSearch from "../util/list-search.jsx";
 
 import MallUtil from "util/mall.jsx";
 import Order from "service/order-service.jsx";
@@ -70,13 +70,12 @@ class OrderList extends React.Component {
 
     render() {
         let tableHeads = [
-            { name: "订单号", width: "15%" },
-            { name: "收件人", width: "15%" },
-            { name: "订单状态", width: "10%" },
-            { name: "订单总价", width: "10%" },
-            { name: "创建时间", width: "20%" },
-            { name: "发货时间", width: "20%" },
-            { name: "操作", width: "10%" },
+            { name: "订单号"},
+            { name: "收件人"},
+            { name: "订单状态"},
+            { name: "订单总价"},
+            { name: "创建时间"},
+            { name: "操作"}
         ];
 
         return (
@@ -94,9 +93,8 @@ class OrderList extends React.Component {
                                         <td><p>{order.statusDesc}</p></td>
                                         <td><p>￥{order.payment}</p></td>
                                         <td><p>{order.createTime}</p></td>
-                                        <td><p>{order.sendTime ? order.sendTime : "未发货"}</p></td>
                                         <td>
-                                            <Link className="btn btn-xs btn-primary" to={"/order/detail/" + order.orderNo}>详情</Link>
+                                            <Link className="btn btn-xs btn-primary" to={"/order/edit/" + order.orderNo}>编辑</Link>
                                         </td>
                                     </tr>
                                 );

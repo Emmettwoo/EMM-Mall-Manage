@@ -14,7 +14,7 @@ import ErrorPage from "page/error/index.jsx";
 import Home from "page/home/index.jsx";
 import Login from "page/login/index.jsx";
 import UserList from "page/user/index.jsx";
-import OrderList from "page/order/index.jsx";
+import OrderRouter from "page/order/router.jsx";
 import ProductRouter from "page/product/router.jsx";
 
 class App extends React.Component {
@@ -29,9 +29,7 @@ class App extends React.Component {
                     <Route path="/user/index" component={UserList} />
 
                     <Route path="/product*" component={ProductRouter} />
-
-                    <Redirect exact from="/order" to="/order/index" />
-                    <Route path="/order" component={OrderList} />
+                    <Route path="/order*" component={OrderRouter} />
 
                     <Route component={ErrorPage} />
                 </Switch>
