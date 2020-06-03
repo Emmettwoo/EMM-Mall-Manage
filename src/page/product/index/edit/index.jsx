@@ -1,5 +1,6 @@
 // 业务组件，非通用组件
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./index.scss";
 import PageTitle from "component/page-title/index.jsx";
@@ -160,11 +161,24 @@ class ProductEdit extends React.Component {
             );
         }
     }
+    onBack(e) {
+        if(confirm("放弃所有修改并返回？")) {
+            this.props.history.push("/product/index");
+            return;
+        }
+    }
 
     render() {
         return (
             <div id="page-wrapper">
-                <PageTitle title={this.state.id!=null ? "编辑商品" : "添加商品"} />
+                <PageTitle title={this.state.id!=null ? "编辑商品" : "添加商品"}>
+                    <div className="page-header-right">
+                        <button className="btn btn-danger" onClick={(e) => {this.onBack()}}>
+                            <i className="fa fa-arrow-left"></i>
+                            <span>&nbsp;返回</span>
+                        </button>
+                    </div>
+                </PageTitle>
                 <div className="form-horizontal">
                     <div className="form-group">
                         <label className="col-md-2 control-label">
