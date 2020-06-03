@@ -84,7 +84,7 @@ module.exports = {
         // 代码分离插件
         new webpack.optimize.CommonsChunkPlugin({
             name: "common",
-            filename: "js/base.js",
+            filename: "js/admin.js",
         })
     ],
     devServer: {
