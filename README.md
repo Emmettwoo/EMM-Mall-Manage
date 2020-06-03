@@ -18,7 +18,7 @@
 - [x] V0.3.0 [User Module](/src/page/user) 用户模块
 - [x] V0.4.0 [Product Module](/src/page/product/index) 商品模块
 - [x] V0.5.0 [Category Module](/src/page/product/category) 品类模块
-- [ ] V0.6.0 [Order Module](/src/page/order) 订单模块
+- [x] V0.6.0 [Order Module](/src/page/order) 订单模块
 
 ---
 
