@@ -7,18 +7,17 @@
 
 ## Intro.简介
 
-![Features](/wiki/images/Features.png)
+![Features](/resources/Features.png)
+
+[^图 Features.png]: 基于V1.0.0版本的项目功能图
 
 ---
 
 ## Version.版本
 
-- [x] V0.1.0 Site Framework 网站框架
-- [x] V0.2.0 [Common Function](/src/component) 通用功能
-- [x] V0.3.0 [User Module](/src/page/user) 用户模块
-- [x] V0.4.0 [Product Module](/src/page/product/index) 商品模块
-- [x] V0.5.0 [Category Module](/src/page/product/category) 品类模块
-- [x] V0.6.0 [Order Module](/src/page/order) 订单模块
+- [x] V1.0.0 首个可用版本
+- [ ] V1.1.0 用户信息管理
+- [ ] V1.2.0 收货地址管理
 
 ---
 
