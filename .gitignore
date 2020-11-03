@@ -14,3 +14,4 @@
 # nodejs files
 /node_modules
 /dist
+yarn.lock
